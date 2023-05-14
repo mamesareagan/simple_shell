@@ -8,6 +8,6 @@
 
 void prompt(void)
 {
-	printf("$");
+	printf("$ ");
 	fflush(stdout);
 }
