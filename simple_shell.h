@@ -3,4 +3,6 @@
 
 #include <stdio.h>
 
+void prompt(void);
+
 #endif
