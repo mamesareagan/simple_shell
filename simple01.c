@@ -7,11 +7,11 @@
  */
 int main(void)
 {
-	pid_t fk;
+	pid_t fk __attribute__((unused));
 	char *arg[] = {"argv[0]", NULL};
 	char *buffer = NULL;
 	ssize_t a;
-	ssize_t b;
+	size_t b;
 	int c;
 
 	while (1)
