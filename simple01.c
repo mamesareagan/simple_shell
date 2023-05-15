@@ -18,6 +18,10 @@ int main(void)
 	{
 		prompt();
 		a = getline(&buffer, &b, stdin);
+		if (*buffer == '\n')
+		{
+			continue;
+		}
 		if (a == -1)
 		{
 			perror("type a command");
