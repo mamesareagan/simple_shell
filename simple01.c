@@ -8,11 +8,13 @@
 int main(void)
 {
 	pid_t fk __attribute__((unused));
-	char *arg[] = {"argv[0]", NULL};
+	char *arg[3];/* = {"argv[0]", NULL};*/
 	char *buffer = NULL;
 	ssize_t a;
 	size_t b;
 	int c;
+	char *token, *command;
+	int t = 0;
 
 	while (1)
 	{
@@ -29,12 +31,27 @@ int main(void)
 		else if (a > 0 && buffer[a - 1] == '\n')
 			buffer[a - 1] = '\0';
 
+		token = strtok(buffer, " ");
+		command = token;
+		while(token != NULL)
+		{
+			token = strtok(NULL, " ");
+			if(token != NULL)
+			{
+				while(t < 3)
+				{
+					arg[t] = token;
+					t++;
+				}
+			}
+		}
+		arg[t] = NULL;
 		c = fork();
 		if (c < 0)
 			perror("unsucessful");
 		else if (c == 0)
 		{
-			if (execve(buffer, arg, NULL) == -1)
+			if (execve(command, arg, NULL) == -1)
 			{
 				perror("No such file or directory");
 				exit(EXIT_FAILURE);
