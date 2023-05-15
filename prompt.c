@@ -8,6 +8,5 @@
 
 void prompt(void)
 {
-	printf("$ ");
-	fflush(stdout);
+	write(STDOUT_FILENO, "$ ", 2);
 }
