@@ -6,6 +6,7 @@
 #include<sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
+
 void prompt(void);
 
 #endif
