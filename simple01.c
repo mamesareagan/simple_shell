@@ -8,13 +8,13 @@
 int main(void)
 {
 	pid_t fk __attribute__((unused));
-	char *arg[3];/* = {"argv[0]", NULL};*/
+	char *arg[5];
 	char *buffer = NULL;
 	ssize_t a;
 	size_t b;
 	int c;
-	char *token, *command;
-	int t = 0;
+	char *token, *command ;
+	int t = 1;
 
 	while (1)
 	{
@@ -33,12 +33,13 @@ int main(void)
 
 		token = strtok(buffer, " ");
 		command = token;
+		arg[0] = token;
 		while(token != NULL)
 		{
 			token = strtok(NULL, " ");
 			if(token != NULL)
 			{
-				while(t < 3)
+				while(t < 5)
 				{
 					arg[t] = token;
 					t++;
@@ -46,12 +47,41 @@ int main(void)
 			}
 		}
 		arg[t] = NULL;
+		char *path = _getenv("PATH");
+		char *dir;
+		char *path_copy = strdup(path);
+		char *path_token = strtok(path_copy, ":");
+		size_t dir_len;
+		int command_exists = 0;
+
+		while (path_token != NULL) {
+			dir_len = strle(path_token);
+			dir = malloc(dir_len + strle(command) + 2);
+			strcpy(dir, path_token);
+			strcat(dir, "/");
+			strcat(dir, command);
+
+			if (access(dir, X_OK) == 0) {
+				command_exists = 1;
+				break;
+			}
+
+			free(dir);
+			path_token = strtok(NULL, ":");
+		}
+
+		free(path_copy);
+
+		if (!command_exists) {
+			perror("Command not found");
+			continue;
+		}
 		c = fork();
 		if (c < 0)
 			perror("unsucessful");
 		else if (c == 0)
 		{
-			if (execve(command, arg, NULL) == -1)
+			if (execve(dir, arg, NULL) == -1)
 			{
 				perror("No such file or directory");
 				exit(EXIT_FAILURE);
