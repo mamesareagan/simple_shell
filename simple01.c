@@ -5,7 +5,7 @@
  *
  * Return:Always (0)
  */
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	pid_t fk __attribute__((unused));
 	char *arg[5];
@@ -26,6 +26,16 @@ int main(void)
 		}
 		else if (strncmp(buffer, "exit", 4) == 0)
 			_exit(0);
+		else if ( strncmp(buffer, "env", 3) == 0)
+		{
+			unsigned int i = 0;
+			
+			while (env[i] != NULL)
+			{
+				printf("%s\n", env[i]);
+				i++;
+			}
+		}
 		if (a == -1)
 		{
 			perror("type a command");
