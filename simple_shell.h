@@ -8,7 +8,6 @@
 #include<sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
 
 void prompt(void);
 int strle(const char *a);

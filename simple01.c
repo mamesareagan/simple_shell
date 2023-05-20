@@ -24,6 +24,8 @@ int main(void)
 		{
 			continue;
 		}
+		else if (strncmp(buffer, "exit", 4) == 0)
+			_exit(0);
 		if (a == -1)
 		{
 			perror("type a command");
