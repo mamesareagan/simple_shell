@@ -11,5 +11,9 @@
 
 void prompt(void);
 int strle(const char *a);
-char *_getenv(const char *name);
+char *_getenv(const char *name, char **env);
+char *find_command_path(const char *command, char **env);
+void ext(const char *str);
+void envir(const char *str,  char **env);
+char** process_command(char *buffer);
 #endif
