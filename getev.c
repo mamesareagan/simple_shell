@@ -4,20 +4,20 @@ int strle(const char *a);
 /**
  * _getenv - finds a specified environmental variable
  * @name:specified variable
+ * @env:environ argument
  *
  * Return:key of the variable else NULL
  */
-extern char **environ;
-char *_getenv(const char *name)
+char *_getenv(const char *name, char **env)
 {
-	char **a = environ;
+	char **a = env;
 	size_t b = strle(name);
 
 	while (*a != NULL)
 	{
 		if (strncmp(*a, name, b) == 0)
 		{
-			return &((*a)[b + 1]);
+			return (&((*a)[b + 1]));
 		}
 		a++;
 	}
