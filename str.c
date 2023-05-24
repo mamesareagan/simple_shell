@@ -8,6 +8,7 @@
 int strle(const char *a)
 {
 	int c;
+
 	if (a == NULL)
 	{
 		return (-1);
