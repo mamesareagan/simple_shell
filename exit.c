@@ -9,9 +9,9 @@
 
 void ext(const char *str)
 {
-	char *str = strdup(str);
+	char *srt = strdup(str);
 
-	if (str == NULL)
+	if (srt == NULL)
 		exit(1);
 	if (strcmp(srt, "exit") == 0)
 	{
