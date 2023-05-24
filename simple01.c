@@ -6,12 +6,14 @@
  * @env:array of environ variables
  * Return:Always (0)
  */
-int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char **env)
+int main(__attribute__((unused))int ac, char **av, char **env)
 {
 	pid_t c, __attribute__((unused))fk;
 	char **arg, *buffer = NULL, *path;
 	ssize_t a;
 	size_t b;
+
+	__attribute__((unused))char **a = av;
 
 	while (1)
 	{
