@@ -7,9 +7,9 @@ int strle(const char *a);
  *
  * Return:key of the variable else NULL
  */
+extern char **environ;
 char *_getenv(const char *name)
 {
-	extern char **environ;
 	char **a = environ;
 	size_t b = strle(name);
 

@@ -5,16 +5,19 @@
  *
  * Return:Always (0)
  */
-int main(int ac, char **av, char **env)
+extern char **environ;
+int main()
 {
 	pid_t fk __attribute__((unused));
 	char *arg[5];
-	char *buffer = NULL;
+	char *buffer = NULL, *path, *dir, *path_copy, *path_token;
 	ssize_t a;
+	char **env = environ;
 	size_t b;
 	int c;
 	char *token, *command ;
-	int t = 1;
+	int t = 1, command_exists;
+	size_t dir_len;
 
 	while (1)
 	{
@@ -29,7 +32,7 @@ int main(int ac, char **av, char **env)
 		else if ( strncmp(buffer, "env", 3) == 0)
 		{
 			unsigned int i = 0;
-			
+
 			while (env[i] != NULL)
 			{
 				printf("%s\n", env[i]);
@@ -59,12 +62,10 @@ int main(int ac, char **av, char **env)
 			}
 		}
 		arg[t] = NULL;
-		char *path = _getenv("PATH");
-		char *dir;
-		char *path_copy = strdup(path);
-		char *path_token = strtok(path_copy, ":");
-		size_t dir_len;
-		int command_exists = 0;
+		path = _getenv("PATH");
+		path_copy = strdup(path);
+		path_token = strtok(path_copy, ":");
+		command_exists = 0;
 
 		while (path_token != NULL) {
 			dir_len = strle(path_token);
