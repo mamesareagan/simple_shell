@@ -8,12 +8,12 @@
  */
 int main(__attribute__((unused))int ac, char **av, char **env)
 {
-	pid_t c, __attribute__((unused))fk;
+	pid_t c;
 	char **arg, *buffer = NULL, *path;
 	ssize_t a;
 	size_t b;
 
-	__attribute__((unused))char **a = av;
+	__attribute__((unused))char **h = av;
 
 	while (1)
 	{
@@ -26,7 +26,7 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 			perror("type a command");
 		}
 		else if (a > 0 && buffer[a - 1] == '\n')
-			buffer[a - 1] = '\0';
+			buffer[(int)a - 1] = '\0';
 
 		ext(buffer);
 		envir(buffer, env);
@@ -41,11 +41,13 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 		if (c < 0)
 			perror("unsucessful");
 		else if (c == 0)
+		{
 			execve(path, arg, NULL);
+			free(path);
+		}
 		else
-			fk = wait(&c);
+			wait(&c);
 	}
-	free(path);
 	free(buffer);
 	return (0);
 }
