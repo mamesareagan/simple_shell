@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdio.h>
 /**
  * strle - length of string
  * @a:string

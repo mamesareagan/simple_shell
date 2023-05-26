@@ -1,4 +1,4 @@
-#include "simple_shell.h"
+include "simple_shell.h"
 /**
  * main - prompts user for command and executes it
  * @ac:numer of arguments
@@ -22,12 +22,9 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 		if (*buffer == '\n')
 			continue;
 		if (a == -1)
-		{
-			perror("type a command");
-		}
+			break;
 		else if (a > 0 && buffer[a - 1] == '\n')
 			buffer[(int)a - 1] = '\0';
-
 		ext(buffer);
 		envir(buffer, env);
 		arg = process_command(buffer);
