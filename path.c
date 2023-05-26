@@ -8,7 +8,7 @@
  * Return: the full path of command if found, NULL otherwise
  */
 
-char *find_command_path(const char *command, char **env)
+char *find_command_path(char *command, char **env)
 {
 	char *path = _getenv("PATH", env);
 	char *path_copy = strdup(path);
@@ -22,8 +22,8 @@ char *find_command_path(const char *command, char **env)
 		dir_len = strlen(path_token);
 		dir = malloc(dir_len + strlen(command) + 2);
 		strcpy(dir, path_token);
-		strcat(dir, "/");
-		strcat(dir, command);
+		_strcat(dir, "/");
+		_strcat(dir, command);
 
 		if (access(dir, X_OK) == 0)
 		{

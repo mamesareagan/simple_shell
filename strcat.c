@@ -1,4 +1,12 @@
-#include <stdio.h>
+#include "simple_shell.h"
+
+/**
+ * _strcat - function that concatenates a string
+ * @dest: destination
+ * @source: source
+ *
+ * Return: returns destination
+ */
 
 char *_strcat(char *dest, char *source)
 {

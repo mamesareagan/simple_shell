@@ -12,10 +12,12 @@
 void prompt(void);
 int strle(const char *a);
 char *_getenv(const char *name, char **env);
-char *find_command_path(const char *command, char **env);
+char *find_command_path(char *command, char **env);
 void ext(const char *str);
 void envir(const char *str,  char **env);
 char **process_command(char *buffer);
 char *_strdup(char *str);
 char *_strcpy(char *dest, const char *src);
+char *_strcat(char *dest, char *source);
+
 #endif
