@@ -9,25 +9,20 @@
 int main(__attribute__((unused))int ac, char **av, char **env)
 {
 	pid_t c;
-	char **arg, *buffer = NULL, *path;
-	ssize_t a;
-	size_t b;
+	char **arg, buff[BUFFER_SIZE], *buffer = NULL, *path;
+	ssize_t b;
 
 	__attribute__((unused))char **h = av;
 
 	while (1)
 	{
 		prompt();
-		a = getline(&buffer, &b, stdin);
-		if (*buffer == '\n')
+		b = read_command(buff, BUFFER_SIZE);
+		if (b == 0)
 			continue;
-		if (a == -1)
-			break;
-		else if (a > 0 && buffer[a - 1] == '\n')
-			buffer[(int)a - 1] = '\0';
-		ext(buffer);
-		envir(buffer, env);
-		arg = process_command(buffer);
+		ext(buff);
+		envir(buff, env);
+		arg = process_command(buff);
 		path =  find_command_path(arg[0], env);
 		if (path == NULL)
 		{
