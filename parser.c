@@ -2,7 +2,7 @@
 
 /**
  * is_cmd - determines if a file is an executable command
- * @info: the info struct
+ * @info: info struct
  * @path: path to the file
  *
  * Return: 1 if true, 0 otherwise
@@ -43,8 +43,8 @@ char *dup_chars(char *pathsrt, int start, int stop)
 }
 
 /**
- * path_find - finds this cmd in the PATH string
- * @info: the info struct
+ * path_find - finds cmd in the PATH string
+ * @info: info struct
  * @pathsrt: the PATH string
  * @cmd: the cmd to find
  *
